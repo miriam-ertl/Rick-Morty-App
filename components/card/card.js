@@ -1,5 +1,5 @@
-export function createCharacterCard(data) {
-  const cardContainer = document.createElement("ul");
+export function createCharacterCard(character) {
+  const cardContainer = document.createElement("li");
   cardContainer.classList.add("card-container");
   /* // add HTML element <IMG>
   const imageItem = document.createElement("li");
@@ -9,17 +9,17 @@ export function createCharacterCard(data) {
 console.log("Hi");
 
 document.addEventListener("scroll", async (event) => {
-  const users = await getUsers();
-  renderUsers(users);
+  const characters = await getCharacters();
+  renderCharacters(characters);
 });
 
-function renderUsers(users) {
-  users.forEach((user) => {
-    const listItem = `<li><img src="${user.image}"> ${user.name} ${user.status} ${user.type} ${user.episode}</li>`;
+function renderCharacters(character) {
+  characters.forEach((character) => {
+    const listItem = `<li><img src="${character.image}"> ${character.name} ${character.status} ${character.type}</li>`;
     cardContainer.innerHTML += listItem;
   });
 }
-async function getUsers() {
+async function getCharacters() {
   const response = await fetch("https://rickandmortyapi.com/api/character/197");
   const json = await response.json();
   return json.data;
