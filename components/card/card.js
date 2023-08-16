@@ -15,12 +15,16 @@ document.addEventListener("scroll", async (event) => {
 
 function renderCharacters(character) {
   characters.forEach((character) => {
-    const listItem = `<li><img src="${character.image}"> ${character.name} ${character.status} ${character.type}</li>`;
+    const listItem = `<li><img src="${character.image}">
+    <h2 class="card__title">${character.name}</h2> 
+    <p class="card__info-title">${character.status}</p>
+    <p class="card__info-title">${character.type}</p>
+    <p class="card__info-title">${character.episode.length}</p></li>`;
     cardContainer.innerHTML += listItem;
   });
 }
 async function getCharacters() {
-  const response = await fetch("https://rickandmortyapi.com/api/character/197");
+  const response = await fetch("https://rickandmortyapi.com/");
   const json = await response.json();
   return json.data;
 }
